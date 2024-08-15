@@ -7,20 +7,34 @@
 (setq load-path (cons "~/.emacs.d/dotemacs/" load-path))
 (prefer-coding-system 'utf-8)
 (setq package-enable-at-startup nil)
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-(straight-use-package 'use-package)
+;; (defvar bootstrap-version)
+;; (let ((bootstrap-file
+;;        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+;;       (bootstrap-version 6))
+;;   (unless (file-exists-p bootstrap-file)
+;;     (with-current-buffer
+;;         (url-retrieve-synchronously
+;;          "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+;;          'silent 'inhibit-cookies)
+;;       (goto-char (point-max))
+;;       (eval-print-last-sexp)))
+;;   (load bootstrap-file nil 'nomessage))
+;; (straight-use-package 'use-package)
 ;; yes-or-no-p replaced
+
+;; Also read: <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>
+(setq package-archives
+      '(("gnu-elpa" . "https://elpa.gnu.org/packages/")
+        ("gnu-elpa-devel" . "https://elpa.gnu.org/devel/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+        ("melpa" . "https://melpa.org/packages/")))
+
+;; Highest number gets priority (what is not mentioned has priority 0)
+(setq package-archive-priorities
+      '(("gnu-elpa" . 3)
+        ("melpa" . 2)
+        ("nongnu" . 1)))
+
 (setopt use-short-answers t)
 (setq visible-bell nil)
 (setq bidi-paragraph-direction 'left-to-right)
@@ -81,7 +95,7 @@
 (keymap-global-set "M-3" #'xah-select-text-in-quote)
 
 ;; (use-package ess
-;;   :straight t
+;;   :ensure t
 ;;   :init
 ;;   (require 'ess-site)
 ;;   (setq org-babel-R-command "/usr/bin/R --no-save"))
@@ -97,12 +111,12 @@
 (define-key flyspell-mode-map (kbd "C-;") 'helm-flyspell-correct)
 
 (use-package pyvenv
-  :straight t
+  :ensure t
   :init
   (pyvenv-activate "/home/henry/venv"))
 
 ;; (use-package org-roam
-;;   :straight t
+;;   :ensure t
 ;;   :custom
 ;;   (org-roam-directory "~/OneDrive/Documents/orgroam")
 ;;   :config
@@ -110,24 +124,24 @@
 ;;   (org-roam-setup))
 
 ;; (use-package org-ref
-;;   :straight t)
+;;   :ensure t)
 
 (use-package notmuch
-  :straight t
+  :ensure t
   :config
   (setq notmuch-search-oldest-first nil))
 
 (use-package magit
-  :straight t)
+  :ensure t)
 
 (use-package smex
-  :straight t
+  :ensure t
   :bind
   (("M-x" . smex)
   ("C-c C-c M-x" . execute-extended-command)))
 
 (use-package ido-vertical-mode
-  :straight t
+  :ensure t
   :config
   (ido-mode 1)
   (ido-vertical-mode 1)
@@ -136,14 +150,14 @@
 
 ;; ;; this not work with consult
 ;; (use-package ido-ubiquitous
-;;   :straight t
+;;   :ensure t
 ;;   :config
 ;;   (ido-ubiquitous 1))
 
 (autoload 'ido-choose-from-recentf "myrecent")
 
 (use-package recentf
-  :straight t
+  :ensure t
   :config
   (setq recentf-max-saved-items 24
 	recent-max-menu-items 5)
@@ -179,7 +193,7 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 
 (use-package vertico
-  :straight t
+  :ensure t
   :init
   :config
   (setq vertico-cycle t)
@@ -188,26 +202,26 @@
 
 
 (use-package consult
-  :straight t
+  :ensure t
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :init
   :bind
   ("C-x b" . consult-buffer))
 
 (use-package consult-ag
-  :straight t)
+  :ensure t)
 
 ;; (use-package ag
-;;   :straight t)
+;;   :ensure t)
 
 (use-package marginalia
-  :straight t
+  :ensure t
   :config
   (marginalia-mode 1))
 
 
 (use-package slime
-  :straight t
+  :ensure t
   :init
   (slime-setup '(slime-fancy))
   :config
@@ -218,22 +232,22 @@
 ;;   :defer t)
 
 (use-package which-key
-  :straight t
+  :ensure t
   :config
   (which-key-mode t))
 
 (use-package orderless
-  :straight t
+  :ensure t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package doom-modeline
-  :straight t
+  :ensure t
   :hook (after-init . doom-modeline-mode))
 
 (use-package corfu
-  :straight t
+  :ensure t
   :custom
   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
   (corfu-auto t)                 ;; Enable auto completion
@@ -349,7 +363,7 @@
   (mu4e t))
 
 (use-package gruvbox-theme
-  :straight t)
+  :ensure t)
 
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'no-error 'no-message)
