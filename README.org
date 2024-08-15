@@ -3,3 +3,12 @@
 * .emacs.d
 init.el
 * helper functions in ./dotemacs
+
+* bash
+- .bashrc
+- .Xresources
+- .profile
+
+* search
+searching in terminal (see for more info RWXROB!)
+
