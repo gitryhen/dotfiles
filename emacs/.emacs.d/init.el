@@ -89,7 +89,7 @@
 (autoload 'my/file-by-date-with-inline-skeleton "saver")
 (global-set-key (kbd "<f12>") 'my/file-by-date-with-inline-skeleton)
 (autoload 'xah-select-line "xah")
-(autoload 'myddgsearch "my/duckduckgo-search")
+;;(autoload 'myddgsearch "my/duckduckgo-search")
 
 (keymap-global-set "M-2" #'xah-select-line)
 (keymap-global-set "M-3" #'xah-select-text-in-quote)
