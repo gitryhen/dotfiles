@@ -131,6 +131,33 @@
   :config
   (setq notmuch-search-oldest-first nil))
 
+(use-package mu4e
+  :ensure t
+  :config
+  (setq mu4e-maildir "~/Mail/planet")
+  (setq mu4e-drafts-folder "/Drafts")
+  (setq mu4e-sent-folder "/Sent Mail")
+  (setq mu4e-trash-folder "/Trash")
+  (setq
+   message-send-mail-function 'smtpmail-send-it
+   smtpmail-default-smtp-server "smtp.kpnmail.nl"
+   smtpmail-smtp-server "smtp.kpmail.nl"
+   smtpmail-local-domain "kpnmail.nl"
+
+   ;; if you need offline mode, set these -- and create the queue dir
+   ;; with 'mu mkdir', i.e.. mu mkdir /home/user/Maildir/queue
+   smtpmail-queue-mail  nil
+   smtpmail-queue-dir  "/home/henry/Mail/planet/queue/cur")
+
+;; don't keep message buffers around
+  (setq message-kill-buffer-on-exit t)
+  )
+
+(use-package bbdb
+  :ensure t
+  :config
+  (bbdb-initialize 'mu4e))
+
 (use-package magit
   :ensure t)
 

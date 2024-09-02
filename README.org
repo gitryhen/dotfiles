@@ -1,7 +1,9 @@
 #+TITLE: DOTFILES README
-
+* stow
+stow stuff ~
 * .emacs.d
-init.el
+- init.el
+
 * helper functions in ./dotemacs
 
 * bash
@@ -12,3 +14,5 @@ init.el
 * search
 searching in terminal (see for more info RWXROB!)
 
+* vim
+- .vimrc
