@@ -35,7 +35,7 @@ set ruler	" Show row and column ruler information
  
 set undolevels=1000	" Number of undo levels
 set backspace=indent,eol,start	" Backspace behaviour
-call plug#begin('~/.vim/plugged')
+" call plug#begin('~/.vim/plugged')
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -46,21 +46,21 @@ set nofoldenable
 " Make sure you use single quotes
 
 " Plug 'morhetz/gruvbox'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-sensible'
+" Plug 'tpope/vim-surround'
 " Plug 'tpope/vim-commentary'
 " Plug 'tpope/vim-repeat'
 " Plugin outside ~/.vim/plugged with post-update hook
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'machakann/vim-sandwich'
-Plug 'lervag/vimtex'
+" Plug 'machakann/vim-sandwich'
+" Plug 'lervag/vimtex'
 " Plug 'vim-pandoc/vim-pandoc'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
 " Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " Plug 'jiangmiao/autopairs'
 
 " Initialize plugin system
-call plug#end()
+" call plug#end()
 " let g:coc_disable_startup_warning = 1
-syntax off
+" syntax off
 

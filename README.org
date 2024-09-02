@@ -1,6 +1,12 @@
 #+TITLE: DOTFILES README
 * stow
-stow stuff ~
+```
+move to dotfiles dir > cd dotfiles
+stow myfolder
+e.g.
+stow vim
+````
+
 * .emacs.d
 - init.el
 
