@@ -120,3 +120,4 @@ fi
 PATH=$HOME/bin:$PATH
 export PATH
 
+set LANG=en_US.UTF-8
